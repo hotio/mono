@@ -35,6 +35,7 @@ steps:
       from_secret: drone_token
     fork: true
     repositories:
+      - hotio/docker-mono_sma
       - hotio/docker-radarr
       - hotio/docker-sonarr
       - hotio/docker-sonarr3
