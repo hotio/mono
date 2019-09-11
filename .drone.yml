@@ -4,7 +4,6 @@ name: checks
 
 trigger:
   event:
-    - tag
     - push
 
 steps:
@@ -25,7 +24,6 @@ platform:
 
 trigger:
   event:
-    - tag
     - push
 
 steps:
@@ -40,7 +38,7 @@ steps:
     repo: ${DRONE_REPO_OWNER}/${DRONE_REPO_NAME##docker-}
     cache_from: ${DRONE_REPO_OWNER}/${DRONE_REPO_NAME##docker-}
     tags:
-      - ${DRONE_TAG=develop}-${DRONE_STAGE_OS}-${DRONE_STAGE_ARCH}
+      - ${DRONE_COMMIT_BRANCH}-${DRONE_COMMIT_SHA:0:7}-${DRONE_BUILD_NUMBER}-${DRONE_STAGE_OS}-${DRONE_STAGE_ARCH}
 
 depends_on:
   - checks
@@ -55,7 +53,6 @@ platform:
 
 trigger:
   event:
-    - tag
     - push
 
 steps:
@@ -70,7 +67,7 @@ steps:
     repo: ${DRONE_REPO_OWNER}/${DRONE_REPO_NAME##docker-}
     cache_from: ${DRONE_REPO_OWNER}/${DRONE_REPO_NAME##docker-}
     tags:
-      - ${DRONE_TAG=develop}-${DRONE_STAGE_OS}-${DRONE_STAGE_ARCH}
+      - ${DRONE_COMMIT_BRANCH}-${DRONE_COMMIT_SHA:0:7}-${DRONE_BUILD_NUMBER}-${DRONE_STAGE_OS}-${DRONE_STAGE_ARCH}
 
 depends_on:
   - checks
@@ -85,7 +82,6 @@ platform:
 
 trigger:
   event:
-    - tag
     - push
 
 steps:
@@ -100,19 +96,20 @@ steps:
     repo: ${DRONE_REPO_OWNER}/${DRONE_REPO_NAME##docker-}
     cache_from: ${DRONE_REPO_OWNER}/${DRONE_REPO_NAME##docker-}
     tags:
-      - ${DRONE_TAG=develop}-${DRONE_STAGE_OS}-${DRONE_STAGE_ARCH}
+      - ${DRONE_COMMIT_BRANCH}-${DRONE_COMMIT_SHA:0:7}-${DRONE_BUILD_NUMBER}-${DRONE_STAGE_OS}-${DRONE_STAGE_ARCH}
 
 depends_on:
   - checks
 
 ---
 kind: pipeline
-name: manifest
+name: manifest-master
 
 trigger:
   event:
-    - tag
     - push
+  branch:
+    - master
 
 steps:
 - name: manifest
@@ -124,7 +121,45 @@ steps:
       from_secret: docker_username
     password:
       from_secret: docker_password
-    spec: manifest.tmpl
+    target: ${DRONE_REPO_OWNER}/${DRONE_REPO_NAME##docker-}:latest
+    template: ${DRONE_REPO_OWNER}/${DRONE_REPO_NAME##docker-}:${DRONE_COMMIT_BRANCH}-${DRONE_COMMIT_SHA:0:7}-${DRONE_BUILD_NUMBER}-OS-ARCH
+    platforms:
+      - linux/amd64
+      - linux/arm
+      - linux/arm64
+
+depends_on:
+  - linux-amd64
+  - linux-arm64
+  - linux-arm
+
+---
+kind: pipeline
+name: manifest-branch
+
+trigger:
+  event:
+    - push
+  branch:
+    exclude:
+      - master
+
+steps:
+- name: manifest
+  image: plugins/manifest
+  pull: always
+  settings:
+    ignore_missing: true
+    username:
+      from_secret: docker_username
+    password:
+      from_secret: docker_password
+    target: ${DRONE_REPO_OWNER}/${DRONE_REPO_NAME##docker-}:${DRONE_COMMIT_BRANCH}
+    template: ${DRONE_REPO_OWNER}/${DRONE_REPO_NAME##docker-}:${DRONE_COMMIT_BRANCH}-${DRONE_COMMIT_SHA:0:7}-${DRONE_BUILD_NUMBER}-OS-ARCH
+    platforms:
+      - linux/amd64
+      - linux/arm
+      - linux/arm64
 
 depends_on:
   - linux-amd64
@@ -137,8 +172,9 @@ name: dockerhub-description
 
 trigger:
   event:
-    - tag
     - push
+  branch:
+    - master
 
 steps:
 - name: dockerhub-description
