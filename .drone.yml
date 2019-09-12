@@ -177,3 +177,30 @@ depends_on:
   - linux-amd64
   - linux-arm64
   - linux-arm
+
+---
+kind: pipeline
+name: downstream
+
+trigger:
+  branch:
+    - master
+
+steps:
+- name: trigger
+  image: plugins/downstream
+  settings:
+    server: https://cloud.drone.io
+    token:
+      from_secret: drone_token
+    fork: true
+    wait: true
+    timeout: 600
+    repositories:
+      - ${DRONE_REPO_OWNER}/docker-lidarr@master
+      - ${DRONE_REPO_OWNER}/docker-radarr@master
+      - ${DRONE_REPO_OWNER}/docker-sonarr@master
+      - ${DRONE_REPO_OWNER}/docker-sonarr3@master
+
+depends_on:
+  - manifest
