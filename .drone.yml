@@ -183,6 +183,8 @@ kind: pipeline
 name: downstream
 
 trigger:
+  branch:
+    - master
   target:
     - security-build
 
