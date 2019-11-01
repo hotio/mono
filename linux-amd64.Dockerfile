@@ -5,7 +5,7 @@ ARG DEBIAN_FRONTEND="noninteractive"
 
 # https://download.mono-project.com/repo/ubuntu/dists/bionic/main/binary-amd64/Packages
 # https://download.mono-project.com/repo/ubuntu/dists/stable-bionic/snapshots/
-ENV MONO_VERSION=5.20.1.34
+ARG MONO_VERSION=5.20.1.34
 
 # install packages
 RUN apt update && \
