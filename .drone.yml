@@ -24,7 +24,6 @@ steps:
     dockerfile: ${DRONE_STAGE_OS}-${DRONE_STAGE_ARCH}.Dockerfile
     tags:
       - ${DRONE_COMMIT_BRANCH}-${DRONE_COMMIT_SHA:0:7}-${DRONE_BUILD_NUMBER}-${DRONE_STAGE_OS}-${DRONE_STAGE_ARCH}
-      - ${DRONE_COMMIT_BRANCH}-${DRONE_STAGE_OS}-${DRONE_STAGE_ARCH}
 
 ---
 kind: pipeline
@@ -52,7 +51,6 @@ steps:
     dockerfile: ${DRONE_STAGE_OS}-${DRONE_STAGE_ARCH}.Dockerfile
     tags:
       - ${DRONE_COMMIT_BRANCH}-${DRONE_COMMIT_SHA:0:7}-${DRONE_BUILD_NUMBER}-${DRONE_STAGE_OS}-${DRONE_STAGE_ARCH}
-      - ${DRONE_COMMIT_BRANCH}-${DRONE_STAGE_OS}-${DRONE_STAGE_ARCH}
 
 ---
 kind: pipeline
@@ -80,7 +78,6 @@ steps:
     dockerfile: ${DRONE_STAGE_OS}-${DRONE_STAGE_ARCH}.Dockerfile
     tags:
       - ${DRONE_COMMIT_BRANCH}-${DRONE_COMMIT_SHA:0:7}-${DRONE_BUILD_NUMBER}-${DRONE_STAGE_OS}-${DRONE_STAGE_ARCH}
-      - ${DRONE_COMMIT_BRANCH}-${DRONE_STAGE_OS}-${DRONE_STAGE_ARCH}
 
 ---
 kind: pipeline
@@ -143,6 +140,48 @@ steps:
     platforms:
       - linux/amd64
       - linux/arm
+      - linux/arm64
+
+- name: amd64
+  image: plugins/manifest
+  pull: always
+  settings:
+    ignore_missing: true
+    username:
+      from_secret: docker_username
+    password:
+      from_secret: docker_password
+    target: ${DRONE_REPO_OWNER}/${DRONE_REPO_NAME##docker-}:${DRONE_COMMIT_BRANCH}-${DRONE_STAGE_OS}-${DRONE_STAGE_ARCH}
+    template: ${DRONE_REPO_OWNER}/${DRONE_REPO_NAME##docker-}:${DRONE_COMMIT_BRANCH}-${DRONE_COMMIT_SHA:0:7}-${DRONE_BUILD_NUMBER}-OS-ARCH
+    platforms:
+      - linux/amd64
+
+- name: arm
+  image: plugins/manifest
+  pull: always
+  settings:
+    ignore_missing: true
+    username:
+      from_secret: docker_username
+    password:
+      from_secret: docker_password
+    target: ${DRONE_REPO_OWNER}/${DRONE_REPO_NAME##docker-}:${DRONE_COMMIT_BRANCH}-${DRONE_STAGE_OS}-${DRONE_STAGE_ARCH}
+    template: ${DRONE_REPO_OWNER}/${DRONE_REPO_NAME##docker-}:${DRONE_COMMIT_BRANCH}-${DRONE_COMMIT_SHA:0:7}-${DRONE_BUILD_NUMBER}-OS-ARCH
+    platforms:
+      - linux/arm
+
+- name: arm64
+  image: plugins/manifest
+  pull: always
+  settings:
+    ignore_missing: true
+    username:
+      from_secret: docker_username
+    password:
+      from_secret: docker_password
+    target: ${DRONE_REPO_OWNER}/${DRONE_REPO_NAME##docker-}:${DRONE_COMMIT_BRANCH}-${DRONE_STAGE_OS}-${DRONE_STAGE_ARCH}
+    template: ${DRONE_REPO_OWNER}/${DRONE_REPO_NAME##docker-}:${DRONE_COMMIT_BRANCH}-${DRONE_COMMIT_SHA:0:7}-${DRONE_BUILD_NUMBER}-OS-ARCH
+    platforms:
       - linux/arm64
 
 depends_on:
