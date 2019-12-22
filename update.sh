@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [[ ${1} == "checkpackages" ]]; then
+if [[ ${1} == "checkdigests" ]]; then
     docker pull hotio/base:stable-linux-arm64
     docker pull hotio/base:stable-linux-arm
     docker pull hotio/base:stable-linux-amd64
