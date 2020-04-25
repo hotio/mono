@@ -1,4 +1,4 @@
-FROM hotio/base@sha256:e9e7a9c6526ef0263348fb100927ba401ecd079b86fcc261417e891a1033a90b
+FROM hotio/base@sha256:d668da1b18583d94b5ddb8e8c25012d24bf3ad54231ab8af2f0ed0ca02bcc6ff
 
 ARG DEBIAN_FRONTEND="noninteractive"
 
@@ -11,13 +11,10 @@ RUN apt update && \
     apt install -y --no-install-recommends --no-install-suggests \
         gnupg && \
     apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF && echo "deb https://download.mono-project.com/repo/ubuntu stable-bionic/snapshots/${MONO_VERSION} main" | tee /etc/apt/sources.list.d/mono-official.list && \
-    apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C5CDF62C7AE05CC847657390C10E11090EC0E438 && echo "deb https://mediaarea.net/repo/deb/ubuntu bionic main" | tee /etc/apt/sources.list.d/mediaarea.list && \
     apt update && \
     apt install -y --no-install-recommends --no-install-suggests \
-        libcurl4-openssl-dev \
-        mono-devel \
-        sqlite3 \
-        mediainfo && \
+        mono-complete \
+        libmediainfo0v5 && \
 # clean up
     apt purge -y gnupg && \
     apt autoremove -y && \
