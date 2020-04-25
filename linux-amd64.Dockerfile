@@ -2,7 +2,6 @@ FROM hotio/base@sha256:0c08ec65409a84cc6cc0110faf6cb6fdd1bcfbe1620d029189b34300f
 
 ARG DEBIAN_FRONTEND="noninteractive"
 
-# https://download.mono-project.com/repo/ubuntu/dists/bionic/main/binary-amd64/Packages
 # https://download.mono-project.com/repo/ubuntu/dists/stable-bionic/snapshots/
 ARG MONO_VERSION=5.20.1.34
 
