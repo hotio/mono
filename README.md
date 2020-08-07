@@ -6,10 +6,10 @@
 
 ## Tags
 
-| Tag      | Description           | Build Status                                                                                                                                      | Last Updated                                                                                                                                              |
-| ---------|-----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| bionic   | Based on Ubuntu 18.04 | [![Build Status](https://cloud.drone.io/api/badges/hotio/docker-mono/status.svg?ref=refs/heads/bionic)](https://cloud.drone.io/hotio/docker-mono) | [![GitHub last commit (branch)](https://img.shields.io/github/last-commit/hotio/docker-mono/bionic)](https://github.com/hotio/docker-mono/commits/bionic) |
-| eoan     | Based on Ubuntu 19.10 | [![Build Status](https://cloud.drone.io/api/badges/hotio/docker-mono/status.svg?ref=refs/heads/eoan)](https://cloud.drone.io/hotio/docker-mono)   | [![GitHub last commit (branch)](https://img.shields.io/github/last-commit/hotio/docker-mono/eoan)](https://github.com/hotio/docker-mono/commits/eoan)     |
-| focal    | Based on Ubuntu 20.04 | [![Build Status](https://cloud.drone.io/api/badges/hotio/docker-mono/status.svg?ref=refs/heads/focal)](https://cloud.drone.io/hotio/docker-mono)  | [![GitHub last commit (branch)](https://img.shields.io/github/last-commit/hotio/docker-mono/focal)](https://github.com/hotio/docker-mono/commits/focal)   |
+| Tag      | Description           | Build Status                                                                                      | Last Updated                                                                                       |
+| ---------|-----------------------|---------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------|
+| bionic   | Based on Ubuntu 18.04 | ![build](https://github.com/hotio/docker-mono/workflows/build/badge.svg?branch=bionic&event=push) | ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/hotio/docker-mono/bionic) |
+| eoan     | Based on Ubuntu 19.10 | ![build](https://github.com/hotio/docker-mono/workflows/build/badge.svg?branch=eoan&event=push)   | ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/hotio/docker-mono/eoan)   |
+| focal    | Based on Ubuntu 20.04 | ![build](https://github.com/hotio/docker-mono/workflows/build/badge.svg?branch=focal&event=push)  | ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/hotio/docker-mono/focal)  |
 
 You can also find tags that reference a commit or version number.
