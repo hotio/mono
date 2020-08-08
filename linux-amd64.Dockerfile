@@ -2,7 +2,7 @@ FROM hotio/base@sha256:db891fcce53a5196d9a973394b998ab9d7a8b57c26e45783b037fb641
 
 ARG DEBIAN_FRONTEND="noninteractive"
 
-# https://download.mono-project.com/repo/ubuntu/dists/bionic/snapshots/
+# https://download.mono-project.com/repo/ubuntu/dists/focal/snapshots/
 ARG MONO_VERSION=6.10.0.104
 
 # install packages
