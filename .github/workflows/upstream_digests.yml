@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        branch: [bionic, eoan, focal]
+        branch: [bionic, focal]
     steps:
     - uses: actions/checkout@v2
       with:
