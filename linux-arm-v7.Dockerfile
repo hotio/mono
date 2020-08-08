@@ -3,13 +3,13 @@ FROM hotio/base@sha256:adec3ba5bb37ee1a04734455262d53ccc1864573ff5171b0754ac5d6a
 ARG DEBIAN_FRONTEND="noninteractive"
 
 # https://download.mono-project.com/repo/ubuntu/dists/bionic/snapshots/
-ARG MONO_VERSION=5.20.1.34
+ARG MONO_VERSION=6.10.0.104
 
 # install packages
 RUN apt update && \
     apt install -y --no-install-recommends --no-install-suggests \
         gnupg && \
-    apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF && echo "deb https://download.mono-project.com/repo/ubuntu bionic/snapshots/${MONO_VERSION} main" | tee /etc/apt/sources.list.d/mono-official.list && \
+    apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF && echo "deb https://download.mono-project.com/repo/ubuntu focal/snapshots/${MONO_VERSION} main" | tee /etc/apt/sources.list.d/mono-official.list && \
     apt update && \
     apt install -y --no-install-recommends --no-install-suggests \
         mono-complete=${MONO_VERSION}\* \
