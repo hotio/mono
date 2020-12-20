@@ -2,7 +2,7 @@
 
 if [[ ${1} == "checkdigests" ]]; then
     export DOCKER_CLI_EXPERIMENTAL=enabled
-    image="ghcr.io/burningio/base"
+    image="ghcr.io/hotio/base"
     tag="bionic"
     manifest=$(docker manifest inspect ${image}:${tag})
     [[ -z ${manifest} ]] && exit 1

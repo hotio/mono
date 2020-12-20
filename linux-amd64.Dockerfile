@@ -1,4 +1,4 @@
-FROM ghcr.io/burningio/base@sha256:1319e6abfa1ad764a259bcd5b6d39350940658145fe7d409120b1bf63475c7c3
+FROM ghcr.io/hotio/base@sha256:1319e6abfa1ad764a259bcd5b6d39350940658145fe7d409120b1bf63475c7c3
 
 ARG DEBIAN_FRONTEND="noninteractive"
 
