@@ -2,10 +2,10 @@
   "tags": [
     {
       "name": "focal",
-      "version": "",
-      "commit": "",
+      "version": "20210223145800",
+      "commit": "255cd88",
       "upstream": "Ubuntu 20.04",
-      "lastUpdated": ""
+      "lastUpdated": "2021-02-23T14:59:34.480Z"
     },
     {
       "name": "bionic",
