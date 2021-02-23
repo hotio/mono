@@ -4,14 +4,14 @@
       "name": "focal",
       "version": "",
       "commit": "",
-      "upstream": "",
+      "upstream": "Ubuntu 20.04",
       "lastUpdated": ""
     },
     {
       "name": "bionic",
       "version": "20210223130322",
       "commit": "1c79ebd",
-      "upstream": "",
+      "upstream": "Ubuntu 18.04",
       "lastUpdated": "2021-02-23T13:04:55.562Z"
     }
   ]
