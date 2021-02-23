@@ -1,18 +1,18 @@
 {
   "tags": [
-      {
+    {
       "name": "focal",
       "version": "",
       "commit": "",
       "upstream": "",
       "lastUpdated": ""
-      },
-      {
+    },
+    {
       "name": "bionic",
-      "version": "",
-      "commit": "",
+      "version": "20210223130322",
+      "commit": "1c79ebd",
       "upstream": "",
-      "lastUpdated": ""
-      }
+      "lastUpdated": "2021-02-23T13:04:55.562Z"
+    }
   ]
 }
